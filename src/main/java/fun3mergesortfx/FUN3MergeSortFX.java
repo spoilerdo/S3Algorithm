@@ -1,6 +1,7 @@
 package fun3mergesortfx;
 
 import algorithm.MergeSortLogic;
+import algorithm.MergeSortManager;
 import algorithm.Offer;
 import algorithm.OfferList;
 import javafx.application.Application;
@@ -15,15 +16,20 @@ import javafx.stage.Stage;
 
 public class FUN3MergeSortFX extends Application {
 
-    private Label sortingTimeLabel;
+    private MergeSortManager manager;
+
     private String compareSelectedMethod;
     private String getSelectedMethod;
+
     ListView<Offer> list = new ListView<>();
+
+    private Label sortingTimeLabel;
     ComboBox<ComboBoxOption> comboBox;
-    private MergeSortLogic logic = new MergeSortLogic();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        manager = new MergeSortManager(this);
+
         //#region Grid pane
         GridPane grid = new GridPane();
         grid.setHgap(10);
@@ -38,7 +44,7 @@ public class FUN3MergeSortFX extends Application {
         //#region List that displays the results
         list.setPrefHeight(600);
         list.setPrefWidth(300);
-        ObservableList<Offer> offers = FXCollections.observableArrayList(logic.TopDownMergeSort(OfferList.offerList, "checkDouble", "getPrice"));
+        ObservableList<Offer> offers = FXCollections.observableArrayList(manager.sort("checkDouble", "getPrice"));
         list.setItems(offers);
         listCellFactory();
         grid.add(list, 1, 3);
@@ -79,10 +85,14 @@ public class FUN3MergeSortFX extends Application {
         primaryStage.show();
     }
 
+    public void setSortingTimeText(String text){
+        sortingTimeLabel.setText(text);
+    }
+
     private void beginSorting(ActionEvent event){
         //call sorting methods
         if(compareSelectedMethod != null && !compareSelectedMethod.equals("") && getSelectedMethod != null && !getSelectedMethod.equals("")){
-            ObservableList<Offer> offers = FXCollections.observableArrayList(logic.TopDownMergeSort(OfferList.offerList, compareSelectedMethod, getSelectedMethod));
+            ObservableList<Offer> offers = FXCollections.observableArrayList(manager.sort(compareSelectedMethod, getSelectedMethod));
             list.setItems(offers);
             listCellFactory();
         }
