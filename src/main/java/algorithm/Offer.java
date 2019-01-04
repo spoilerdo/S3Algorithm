@@ -4,9 +4,9 @@ public class Offer {
     private int offerId;
     private int itemId;
     private int senderId;
-    private Double price;
+    private float price;
 
-    public Offer(int offerId, int itemId, int senderId, Double price) {
+    public Offer(int offerId, int itemId, int senderId, float price) {
         this.offerId = offerId;
         this.itemId = itemId;
         this.senderId = senderId;
@@ -25,7 +25,7 @@ public class Offer {
         return senderId;
     }
 
-    public Double getPrice() {
+    public float getPrice() {
         return price;
     }
 
@@ -34,6 +34,6 @@ public class Offer {
     }
 
     public boolean checkDouble(String leftDouble, String rightDouble){
-        return Double.parseDouble(leftDouble) <= Double.parseDouble(rightDouble);
+        return Float.parseFloat(leftDouble) <= Float.parseFloat(rightDouble);
     }
 }

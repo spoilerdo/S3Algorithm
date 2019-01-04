@@ -39,7 +39,7 @@ public class FUN3MergeSortFX extends Application {
         //#region Label for displaying sorting time
         sortingTimeLabel = new Label("Sorting duration: 0 ms");
         grid.add(sortingTimeLabel, 1, 1);
-        //#endergion
+        //#endregion
 
         //#region List that displays the results
         list.setPrefHeight(600);
@@ -48,7 +48,7 @@ public class FUN3MergeSortFX extends Application {
         list.setItems(offers);
         listCellFactory();
         grid.add(list, 1, 3);
-        //#endergion
+        //#endregion
 
         //#region Combo box that applies the chosen filter
         ObservableList<ComboBoxOption> options =
@@ -74,6 +74,13 @@ public class FUN3MergeSortFX extends Application {
         grid.add(sortButton, 6, 1);
         //#endregion
 
+        //#region Button to increase offer list
+        Button increaseButton = new Button();
+        increaseButton.setText("Increase List");
+        increaseButton.setOnAction(this::increaseList);
+        grid.add(increaseButton, 6, 3);
+        //#endregion
+
         // Create the scene and add the grid pane
         Group root = new Group();
         Scene scene = new Scene(root, 530, 730);
@@ -96,6 +103,11 @@ public class FUN3MergeSortFX extends Application {
             list.setItems(offers);
             listCellFactory();
         }
+    }
+
+    private void increaseList(ActionEvent event){
+        //OfferList.increaseList();
+        OfferList.increaseListRandom();
     }
 
     private void comboBoxCellFactory(){
@@ -130,10 +142,10 @@ public class FUN3MergeSortFX extends Application {
             protected void updateItem(Offer offer, boolean empty){
                 super.updateItem(offer, empty);
 
-                if (empty || offer == null || offer.getPrice() == null) {
+                if (empty || offer == null) {
                     setText(null);
                 } else {
-                    setText(offer.getPrice().toString());
+                    setText(String.valueOf(offer.getPrice()));
                 }
             }
         });
