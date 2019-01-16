@@ -68,17 +68,4 @@ public class MergeSortLogic {
 
         return results;
     }
-
-    //Bottom-up merge sort algorithm which uses a small fixed size array of references to nodes, where array[i] is
-    //either a reference to a list of size 2^i or 0.
-    //Node is a reference or pointer to a node.
-    //The merge() function would be similar to the one shown in the top-down merge.
-    public List<Offer>BottomUpMergeSort(List<Offer> head){
-        //return if empty list
-        if(head == null){
-            return null;
-        }
-        //TODO: finish this one
-        return null;
-    }
 }
