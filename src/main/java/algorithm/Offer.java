@@ -36,4 +36,9 @@ public class Offer {
     public boolean checkDouble(String leftDouble, String rightDouble){
         return Float.parseFloat(leftDouble) <= Float.parseFloat(rightDouble);
     }
+
+    @Override
+    public String toString(){
+        return price + "/ " + itemId + "/ " + senderId;
+    }
 }

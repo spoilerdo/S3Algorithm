@@ -145,7 +145,7 @@ public class FUN3MergeSortFX extends Application {
                 if (empty || offer == null) {
                     setText(null);
                 } else {
-                    setText(String.valueOf(offer.getPrice()));
+                    setText(String.valueOf(offer.toString()));
                 }
             }
         });
